@@ -3,6 +3,10 @@ let movreq = 0;
 let m;
 let n;
 
+//issues
+//fourth quadrant movement in bishop not working
+
+
 //white
 //pawn = 101 == blue
 //rook = 105 == orange
@@ -20,14 +24,14 @@ let n;
 
 
 let chess = [
-    [105, 0, 104, 0, 0, 104, 0, 105],
+    [105, 0, 104, 209, 0, 104, 0, 105],
     [101, 101, 101, 101, 101, 101, 101, 101],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [201, 201, 201, 201, 201, 201, 201, 201],
-    [205, 0, 204, 0, 0, 204, 0, 205],
+    [205, 0, 204, 109, 0, 204, 0, 205],
 ];
 
 const rookMovementX = [];
@@ -65,27 +69,29 @@ function whiteRookMovement(x , y)
 function whiteBishopMovement(x, y)
 {
 
-    //not working
-    /*for(i = 1; i+x<8; i++)
+    
+    for(i = 1; i+x<8 && i+y<8; i++) //first cordinate
     {
         bishopMovementX.push(i+x);
         bishopMovementY.push(i+y);
     }
-    for(i = 1; x-i>=0; i++)
+    
+    for(i = 1; x+i<8 && y-i>=0; i++) //second cordinate
     {
         bishopMovementX.push(i+x);
-        bishopMovementY.push(i+y);
+        bishopMovementY.push(y-i);
     }
-    for(i = 1; i+y<8; i++)
+   for(i = 1;x-i>=0 && y-i>=0; i++) //third qudarant
+   {
+    bishopMovementX.push(x-i);
+    bishopMovementY.push(y-i);
+   }
+
+   for(i = 1; x-i>=0 && y+i<8; i++) //fourth quadrant not working
     {
-        bishopMovementX.push(i+x);
-        bishopMovementY.push(i+y);
+        bishopMovementX.push(x-i);
+        bishopMovementY.push(y+i);
     }
-    for(i = 1; y-i>=0; i++)
-    {
-        bishopMovementX.push(i+x);
-        bishopMovementY.push(i+y);
-    }*/
 }
 
 
@@ -120,6 +126,14 @@ function colorr()
             else if(chess[x][y] == 104)
             {
                 document.getElementById(((x*8) + y +1).toString()).style.background = "pink";
+            }
+            else if(chess[x][y] == 109)
+            {
+                document.getElementById(((x*8) + y +1).toString()).style.background = "violet";
+            }
+            else if(chess[x][y] == 209)
+            {
+                document.getElementById(((x*8) + y +1).toString()).style.background = "slateblue";
             }
             else
             {
@@ -227,12 +241,50 @@ function move(item) {
                 //white
                 else if(chess[x][y] == 104)
                 {
-                    movreq = 205;
+                    movreq = 104;
                     bishopMovementX.length = 0;
                     bishopMovementY.length = 0;
                     whiteBishopMovement(x, y);
-                    document.getElementById("demo1").innerHTML = bishopMovementX;
-                    document.getElementById("demo2").innerHTML = bishopMovementY;
+                    //document.getElementById("demo1").innerHTML = bishopMovementX;
+                    //document.getElementById("demo2").innerHTML = bishopMovementY;
+                    chess[x][y] = 0;
+
+                }
+                //black
+                else if(chess[x][y] == 204)
+                {
+                    movreq = 204;
+                    bishopMovementX.length = 0;
+                    bishopMovementY.length = 0;
+                    whiteBishopMovement(x, y);
+                    chess[x][y] = 0;
+
+                }
+
+                //selecting queen
+                //white
+                else if(chess[x][y] == 109)
+                {
+                    movreq = 109;
+                    bishopMovementX.length = 0;
+                    bishopMovementY.length = 0;
+                    whiteBishopMovement(x, y);
+                    rookMovementX.length = 0;
+                    rookMovementY.length = 0;
+                    whiteRookMovement(x, y);
+                    chess[x][y] = 0;
+
+                }
+                //black
+                else if(chess[x][y] == 209)
+                {
+                    movreq = 209;
+                    bishopMovementX.length = 0;
+                    bishopMovementY.length = 0;
+                    whiteBishopMovement(x, y);
+                    rookMovementX.length = 0;
+                    rookMovementY.length = 0;
+                    whiteRookMovement(x, y);
                     chess[x][y] = 0;
 
                 }
@@ -302,6 +354,105 @@ function move(item) {
         else if(movreq == 205)
         {
             let flag = 1;
+            for(i = 0; i< rookMovementX.length; i++)
+            {
+                if(rookMovementX[i] == x && rookMovementY[i] == y)
+                {
+                    flag = 0;
+                }
+            }
+            if(flag == 0)
+            {
+                chess[x][y] = movreq;
+                movreq = 0; 
+            }
+            else{
+                alert("invalid");
+            }
+        }
+
+        //bishop movement
+        //white
+        else if(movreq == 104)
+        {
+            let flag = 1;
+            for(i = 0; i< bishopMovementX.length; i++)
+            {
+                if(bishopMovementX[i] == x && bishopMovementY[i] == y)
+                {
+                    flag = 0;
+                }
+            }
+            if(flag == 0)
+            {
+                chess[x][y] = movreq;
+                movreq = 0; 
+            }
+            else{
+                alert("invalid");
+            }
+        }
+        //black
+        else if(movreq == 204)
+        {
+            let flag = 1;
+            for(i = 0; i< bishopMovementX.length; i++)
+            {
+                if(bishopMovementX[i] == x && bishopMovementY[i] == y)
+                {
+                    flag = 0;
+                }
+            }
+            if(flag == 0)
+            {
+                chess[x][y] = movreq;
+                movreq = 0; 
+            }
+            else{
+                alert("invalid");
+            }
+        }
+
+        //queen movement
+        //white
+        else if(movreq == 109)
+        {
+            let flag = 1;
+            for(i = 0; i< bishopMovementX.length; i++)
+            {
+                if(bishopMovementX[i] == x && bishopMovementY[i] == y)
+                {
+                    flag = 0;
+                }
+            }
+            for(i = 0; i< rookMovementX.length; i++)
+            {
+                if(rookMovementX[i] == x && rookMovementY[i] == y)
+                {
+                    flag = 0;
+                }
+            }
+            if(flag == 0)
+            {
+                chess[x][y] = movreq;
+                movreq = 0; 
+            }
+            else{
+                alert("invalid");
+            }
+        }
+
+        //black
+        else if(movreq == 209)
+        {
+            let flag = 1;
+            for(i = 0; i< bishopMovementX.length; i++)
+            {
+                if(bishopMovementX[i] == x && bishopMovementY[i] == y)
+                {
+                    flag = 0;
+                }
+            }
             for(i = 0; i< rookMovementX.length; i++)
             {
                 if(rookMovementX[i] == x && rookMovementY[i] == y)
