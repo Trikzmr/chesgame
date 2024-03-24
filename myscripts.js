@@ -4,7 +4,7 @@ let m;
 let n;
 
 //issues
-//fourth quadrant movement in bishop not working
+//pawn movment error
 
 
 //white
@@ -24,20 +24,22 @@ let n;
 
 
 let chess = [
-    [105, 0, 104, 209, 0, 104, 0, 105],
+    [105, 103, 104, 209, 0, 104, 103, 105],
     [101, 101, 101, 101, 101, 101, 101, 101],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [201, 201, 201, 201, 201, 201, 201, 201],
-    [205, 0, 204, 109, 0, 204, 0, 205],
+    [205, 203, 204, 109, 0, 204, 203, 205],
 ];
 
 const rookMovementX = [];
 const rookMovementY = [];
 const bishopMovementX = [];
 const bishopMovementY = [];
+const knightX = [];
+const knightY = [];
 
 
 //rook movent array 
@@ -94,6 +96,33 @@ function whiteBishopMovement(x, y)
     }
 }
 
+function knight(x, y)
+{
+    knightX.push(x+2);
+    knightY.push(y+1);
+
+    knightX.push(x+2);
+    knightY.push(y-1);
+
+    knightX.push(x-2);
+    knightY.push(y+1);
+
+    knightX.push(x-2);
+    knightY.push(y-1);
+
+    knightX.push(x-1);
+    knightY.push(y-2);
+
+    knightX.push(x+1);
+    knightY.push(y+2);
+
+    knightX.push(x-1);
+    knightY.push(y+2);
+
+    knightX.push(x+1);
+    knightY.push(y-2);
+}
+
 
 //color
 function colorr()
@@ -134,6 +163,14 @@ function colorr()
             else if(chess[x][y] == 209)
             {
                 document.getElementById(((x*8) + y +1).toString()).style.background = "slateblue";
+            }
+            else if(chess[x][y] == 103)
+            {
+                document.getElementById(((x*8) + y +1).toString()).style.background = "green";
+            }
+            else if(chess[x][y] == 203)
+            {
+                document.getElementById(((x*8) + y +1).toString()).style.background = "navy";
             }
             else
             {
@@ -245,8 +282,7 @@ function move(item) {
                     bishopMovementX.length = 0;
                     bishopMovementY.length = 0;
                     whiteBishopMovement(x, y);
-                    //document.getElementById("demo1").innerHTML = bishopMovementX;
-                    //document.getElementById("demo2").innerHTML = bishopMovementY;
+                    
                     chess[x][y] = 0;
 
                 }
@@ -285,6 +321,34 @@ function move(item) {
                     rookMovementX.length = 0;
                     rookMovementY.length = 0;
                     whiteRookMovement(x, y);
+                    chess[x][y] = 0;
+
+                }
+
+                //selecting knight
+                //white
+
+                else if(chess[x][y] == 103)
+                {
+                    movreq = 103;
+                    knightX.length = 0;
+                    knightY.length = 0;
+                    knight(x, y);
+                    document.getElementById("demo1").innerHTML = knightX;
+                    document.getElementById("demo2").innerHTML = knightY;
+                    chess[x][y] = 0;
+
+                }
+
+                //black
+                else if(chess[x][y] == 203)
+                {
+                    movreq = 203;
+                    knightX.length = 0;
+                    knightY.length = 0;
+                    knight(x, y);
+                    document.getElementById("demo1").innerHTML = knightX;
+                    document.getElementById("demo2").innerHTML = knightY;
                     chess[x][y] = 0;
 
                 }
@@ -456,6 +520,50 @@ function move(item) {
             for(i = 0; i< rookMovementX.length; i++)
             {
                 if(rookMovementX[i] == x && rookMovementY[i] == y)
+                {
+                    flag = 0;
+                }
+            }
+            if(flag == 0)
+            {
+                chess[x][y] = movreq;
+                movreq = 0; 
+            }
+            else{
+                alert("invalid");
+            }
+        }
+
+        //knight movement
+        //white
+
+        else if(movreq == 103)
+        {
+            let flag = 1;
+            for(i = 0; i< knightX.length; i++)
+            {
+                if(knightX[i] == x && knightY[i] == y)
+                {
+                    flag = 0;
+                }
+            }
+            if(flag == 0)
+            {
+                chess[x][y] = movreq;
+                movreq = 0; 
+            }
+            else{
+                alert("invalid");
+            }
+        }
+
+        //black
+        else if(movreq == 203)
+        {
+            let flag = 1;
+            for(i = 0; i< knightX.length; i++)
+            {
+                if(knightX[i] == x && knightY[i] == y)
                 {
                     flag = 0;
                 }
