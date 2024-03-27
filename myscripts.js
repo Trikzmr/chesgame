@@ -3,6 +3,13 @@ let movreq = 0;
 let m;
 let n;
 
+
+//image objects
+
+//let bpawn = document.createElement('img');
+//bpawn.src ='IMG/101.png';
+
+
 //issues
 //pawn movment error
 
@@ -45,26 +52,122 @@ const knightY = [];
 //rook movent array 
 function whiteRookMovement(x , y)
 {
-    for(let i = x+1; i<8; i++)
+    if(a == 2)
     {
-        rookMovementX.push(i);
-        rookMovementY.push(y);
+        
+        for(let i = x+1; i<8; i++)
+        {
+            if(chess[i][y] > 99 && chess[i][y]< 199)
+            {
+                break;
+            }
+            rookMovementX.push(i);
+            rookMovementY.push(y);
+            if(chess[i][y]> 199)
+            {
+                break;
+            }
+        }
+        for(let i = x-1; i>=0; i--)
+        {
+            if(chess[i][y] > 99 && chess[i][y]< 199)
+            {
+                break;
+            }
+            rookMovementX.push(i);
+            rookMovementY.push(y);
+            if(chess[i][y]> 199)
+            {
+                break;
+            }
+        }
+        for(let i = y+1; i<8; i++)
+        {
+            if(chess[x][i] > 99 && chess[x][i]< 199)
+            {
+                break;
+            }
+            rookMovementX.push(x);
+            rookMovementY.push(i);
+            if(chess[x][i]> 199)
+            {
+                break;
+            }
+        }
+        for(let i = y-1; i>=0; i--)
+        {
+            if(chess[x][i] > 99 && chess[x][i]< 199)
+            {
+                break;
+            }
+            rookMovementX.push(x);
+            rookMovementY.push(i);
+            if(chess[x][i]> 199)
+            {
+                break;
+            }
+        }
     }
-    for(let i = 0; i<x; i++)
+    else if(a == 1)
     {
-        rookMovementX.push(i);
-        rookMovementY.push(y);
+        for(let i = x+1; i<8; i++)
+        {
+            if(chess[i][y]> 199)
+            {
+                break;
+            }
+            rookMovementX.push(i);
+            rookMovementY.push(y);
+            if(chess[i][y] > 99 && chess[i][y]< 199)
+            {
+                break;
+            }
+            
+        }
+        for(let i = x-1; i>=0; i--)
+        {
+            if(chess[i][y]> 199)
+            {
+                break;
+            }
+            
+            rookMovementX.push(i);
+            rookMovementY.push(y);
+            if(chess[i][y] > 99 && chess[i][y]< 199)
+            {
+                break;
+            }
+        }
+        for(let i = y+1; i<8; i++)
+        {
+            if(chess[x][i]> 199)
+            {
+                break;
+            }
+            rookMovementX.push(x);
+            rookMovementY.push(i);
+            
+            if(chess[x][i] > 99 && chess[x][i]< 199)
+            {
+                break;
+            }
+        }
+        for(let i = y-1; i>=0; i--)
+        {
+            if(chess[x][i]> 199)
+            {
+                break;
+            }
+            
+            rookMovementX.push(x);
+            rookMovementY.push(i);
+            if(chess[x][i] > 99 && chess[x][i]< 199)
+            {
+                break;
+            }
+        }
     }
-    for(let i = y+1; i<8; i++)
-    {
-        rookMovementX.push(x);
-        rookMovementY.push(i);
-    }
-    for(let i = 0; i<y; i++)
-    {
-        rookMovementX.push(x);
-        rookMovementY.push(i);
-    }
+    
 }
 
 //bishop movement array
@@ -134,60 +237,94 @@ function colorr()
         {
             if(chess[x][y] == 101)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "blue";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/101.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 201)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "brown";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/201.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 105)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "orange";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/105.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 205)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "purple";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/205.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 204)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "teal";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/204.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 104)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "pink";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/104.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 109)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "violet";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/209.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 209)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "slateblue";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/109.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 103)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "green";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/103.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 203)
             {
-                document.getElementById(((x*8) + y +1).toString()).style.background = "navy";
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/203.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else
             {
                 if(x%2 == 0 && y%2 == 0)
                 {
+                    document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
                     document.getElementById(((x*8) + y +1).toString()).style.background = "beige";
                 }
                 if(x%2 != 0 && y%2 == 0)
                 {
+                    document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
                     document.getElementById(((x*8) + y +1).toString()).style.background = "#333";
                 }
                 if(x%2 == 0 && y%2 != 0)
                 {
+                    document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
                     document.getElementById(((x*8) + y +1).toString()).style.background = "#333";
                 }
                 if(x%2 != 0 && y%2 != 0)
                 {
+                    document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
                     document.getElementById(((x*8) + y +1).toString()).style.background = "beige";
                 }
             }
@@ -233,37 +370,14 @@ function move(item) {
             {
 
                 //selecting  pawn
-                //white
-                if(chess[x][y] == 101)
-                {
-                    movreq = 101;
-                    m = x+1;
-                    n = y;
-                    chess[x][y] = 0;
-                }
-                //black
-                else if(chess[x][y] == 201)
+                if(chess[x][y] == 201)
                 {
                     movreq = 201;
                     m = x-1;
                     n = y;
                     chess[x][y] = 0;
                 }
-
-                //selecting rook
-                //white
-
-                else if(chess[x][y] == 105)
-                {
-                    movreq = 105;
-                    rookMovementX.length = 0;
-                    rookMovementY.length = 0;
-                    whiteRookMovement(x, y);
-                    chess[x][y] = 0;
-
-                }
-
-                //black
+                //rook
                 else if(chess[x][y] == 205)
                 {
                     movreq = 205;
@@ -275,18 +389,6 @@ function move(item) {
                 }
 
                 //selecting bishop
-                //white
-                else if(chess[x][y] == 104)
-                {
-                    movreq = 104;
-                    bishopMovementX.length = 0;
-                    bishopMovementY.length = 0;
-                    whiteBishopMovement(x, y);
-                    
-                    chess[x][y] = 0;
-
-                }
-                //black
                 else if(chess[x][y] == 204)
                 {
                     movreq = 204;
@@ -299,18 +401,7 @@ function move(item) {
 
                 //selecting queen
                 //white
-                else if(chess[x][y] == 109)
-                {
-                    movreq = 109;
-                    bishopMovementX.length = 0;
-                    bishopMovementY.length = 0;
-                    whiteBishopMovement(x, y);
-                    rookMovementX.length = 0;
-                    rookMovementY.length = 0;
-                    whiteRookMovement(x, y);
-                    chess[x][y] = 0;
-
-                }
+                
                 //black
                 else if(chess[x][y] == 209)
                 {
@@ -328,19 +419,6 @@ function move(item) {
                 //selecting knight
                 //white
 
-                else if(chess[x][y] == 103)
-                {
-                    movreq = 103;
-                    knightX.length = 0;
-                    knightY.length = 0;
-                    knight(x, y);
-                    document.getElementById("demo1").innerHTML = knightX;
-                    document.getElementById("demo2").innerHTML = knightY;
-                    chess[x][y] = 0;
-
-                }
-
-                //black
                 else if(chess[x][y] == 203)
                 {
                     movreq = 203;
@@ -353,14 +431,73 @@ function move(item) {
 
                 }
 
+                //black
+                else
+                {
+                    alert("invalid selection");
+                }
+
             }
             //alert("x: " + x + " y: " + y);
             //a = 2;
-        } else if (a == 2) {
-            document.getElementById(item).style.background = "green";
-            a = 1;
-            alert("x: " + x + " y: " + y);
-            chess[x][y] = 2;
+        } 
+        else if (a == 2) 
+        {
+            if(chess[x][y] == 101)
+            {
+                    movreq = 101;
+                    m = x+1;
+                    n = y;
+                    chess[x][y] = 0;
+            }
+
+            else if(chess[x][y] == 105)
+            {
+                    movreq = 105;
+                    rookMovementX.length = 0;
+                    rookMovementY.length = 0;
+                    whiteRookMovement(x, y);
+                    document.getElementById("demo1").innerHTML = rookMovementX;
+                    document.getElementById("demo2").innerHTML = rookMovementY;
+                    chess[x][y] = 0;
+
+            }
+
+            else if(chess[x][y] == 109)
+            {
+                    movreq = 109;
+                    bishopMovementX.length = 0;
+                    bishopMovementY.length = 0;
+                    whiteBishopMovement(x, y);
+                    rookMovementX.length = 0;
+                    rookMovementY.length = 0;
+                    whiteRookMovement(x, y);
+                    chess[x][y] = 0;
+
+            }
+
+            else if(chess[x][y] == 104)
+                {
+                    movreq = 104;
+                    bishopMovementX.length = 0;
+                    bishopMovementY.length = 0;
+                    whiteBishopMovement(x, y);
+                    
+                    chess[x][y] = 0;
+
+                }
+
+                else if(chess[x][y] == 103)
+                {
+                    movreq = 103;
+                    knightX.length = 0;
+                    knightY.length = 0;
+                    knight(x, y);
+                    document.getElementById("demo1").innerHTML = knightX;
+                    document.getElementById("demo2").innerHTML = knightY;
+                    chess[x][y] = 0;
+
+                }
         }
     }
     else{
@@ -373,6 +510,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 1;
                 
             }
             else{
@@ -385,7 +523,8 @@ function move(item) {
             if((x == m && y == n) || (x == m-1 && y == n))
             {
                 chess[x][y] = movreq;
-                movreq = 0; 
+                movreq = 0;
+                a = 2; 
                 
             }
             else{
@@ -409,6 +548,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 1;
             }
             else{
                 alert("invalid");
@@ -429,6 +569,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 2;
             }
             else{
                 alert("invalid");
@@ -451,6 +592,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 1;
             }
             else{
                 alert("invalid");
@@ -471,6 +613,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 2; 
             }
             else{
                 alert("invalid");
@@ -500,6 +643,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 1;
             }
             else{
                 alert("invalid");
@@ -528,6 +672,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 2; 
             }
             else{
                 alert("invalid");
@@ -551,6 +696,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 1;
             }
             else{
                 alert("invalid");
@@ -572,6 +718,7 @@ function move(item) {
             {
                 chess[x][y] = movreq;
                 movreq = 0; 
+                a = 2; 
             }
             else{
                 alert("invalid");
