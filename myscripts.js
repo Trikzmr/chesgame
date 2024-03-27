@@ -31,14 +31,14 @@ let n;
 
 
 let chess = [
-    [105, 103, 104, 209, 0, 104, 103, 105],
+    [105, 103, 104, 109, 0, 104, 103, 105],
     [101, 101, 101, 101, 101, 101, 101, 101],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [201, 201, 201, 201, 201, 201, 201, 201],
-    [205, 203, 204, 109, 0, 204, 203, 205],
+    [205, 203, 204, 209, 0, 204, 203, 205],
 ];
 
 const rookMovementX = [];
@@ -281,14 +281,14 @@ function colorr()
             {
                 document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
                 const img = document.createElement('img');
-                img.src = 'IMG/209.png';
+                img.src = 'IMG/109.png';
                 document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 209)
             {
                 document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
                 const img = document.createElement('img');
-                img.src = 'IMG/109.png';
+                img.src = 'IMG/209.png';
                 document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
             else if(chess[x][y] == 103)
@@ -432,10 +432,6 @@ function move(item) {
                 }
 
                 //black
-                else
-                {
-                    alert("invalid selection");
-                }
 
             }
             //alert("x: " + x + " y: " + y);
