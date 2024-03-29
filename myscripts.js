@@ -755,6 +755,13 @@ function colorr()
                 img.src = 'IMG/203.png';
                 document.getElementById(((x*8) + y +1).toString()).appendChild(img);
             }
+            else if(chess[x][y] == 120)
+            {
+                document.getElementById(((x*8) + y +1).toString()).innerHTML ='';
+                const img = document.createElement('img');
+                img.src = 'IMG/120.png';
+                document.getElementById(((x*8) + y +1).toString()).appendChild(img);
+            }
             else
             {
                 if(x%2 == 0 && y%2 == 0)
